@@ -12,39 +12,44 @@ function agregarAmigo(){
     if(newAmigo.trim() === '') {
         document.getElementById('resultado').innerHTML = 'Por favor inserte un nombre';
         } else {
-            document.getElementById ('resultado').innerHTML = '';
-            amigos.push(newAmigo); 
+            //verificar que no esta repetido
+            if(amigos.includes(newAmigo)){
+                document.getElementById('resultado').innerHTML=`El nombre ${newAmigo} ya esta en la lista`
+            } else {
+                amigos.push(newAmigo);
+                document.getElementById ('resultado').innerHTML = '';
+            } 
         }
-
+            
         document.getElementById('amigo').value ='';
         document.getElementById('amigo').focus();
 
-        listaAmigos()
+        listaAmigos();
     }
 
 //agregar el nombre a la lista
-    function listaAmigos (){
-        let lista =document.getElementById('listaAmigos');
+function listaAmigos() {
+    let lista = document.getElementById('listaAmigos');
+    lista.innerHTML = '';
 
-        lista.innerHTML='';
-
-    for(let i=0; i<amigos.length; i++){
-        const li =document.createElement ('li');
-        li.textContent =amigos[i];
-        lista.appendChild(i);
+    // Recorrer los amigos y agregarlos a la lista
+    for (let i = 0; i < amigos.length; i++) {
+        let li = document.createElement("li");
+        li.textContent = amigos[i];
+        lista.appendChild(li);
     }
 }
 
 //funcion para sortear amigos
 function sortearAmigo() {
     if(amigos.length === 0) {
-        alert("No hay ningun amigo para sortear, agrega al menos uno");
-        return
+        document.getElementById('resultado').innerHTML ="No hay ningun amigo para sortear, agrega a tus amigos";
+        return;
     }
-    const amigoAleatorio = Math.floor(Math.random() *amigos.length);
+    let amigoAleatorio = Math.floor(Math.random() *amigos.length);
 
-    const amigoSeleccionado = amigos[amigoAleatorio];
+    let amigoSeleccionado = amigos[amigoAleatorio];
 
-    const resultado = document.getElementById ('resultado');
+    let resultado = document.getElementById ('resultado');
     resultado.innerHTML = `Amigo seleccionado: <strong>${amigoSeleccionado}</strong>`;
 }
