@@ -6,46 +6,37 @@ let amigos = [];
 //funcion para agregar amigos
 function agregarAmigo(){
     //capturar el valor del campo de entrada
-    const agregarAmigo = document.getElementById ("amigo");
-    const nombreAmigo = agregarAmigo.ariaValueMax.trim ();
+    let newAmigo = document.getElementById ("amigo").value;
     
     //validar la entrada que no este vacio
-    if(nombre === '') {
-        alert ('Por favor inserte un nombre');
-        return;
+    if(newAmigo.trim() === '') {
+        document.getElementById('resultado').innerHTML = 'Por favor inserte un nombre';
+        } else {
+            document.getElementById ('resultado').innerHTML = '';
+            amigos.push(newAmigo); 
+        }
+
+        document.getElementById('amigo').value ='';
+        document.getElementById('amigo').focus();
+
+        listaAmigos()
     }
 
-    //validar que no este repetido
-    if (amigos.includes (nombreAmigo)){
-        alert (`El nombre ${nombreAmigo} ya se encuentra en la lista`);
-        return;
-    }
+//agregar el nombre a la lista
+    function listaAmigos (){
+        let lista =document.getElementById('listaAmigos');
 
-    //agregar el nombre si no esta repetido
-    amigos.push(nombreAmigo);
-
-    //limpiar el campo de entrada
-    agregarAmigo.ariaValue='';
-
-    //actualizar la lista en HTML
-    actualizarLista();
-}
-
-//funcion para actualizar lista de amigos
-function actualizarLista() {
-    const listaAmigos = document.getElementById('listaAmigos');
-//borrar el contenido
-    listaAmigos.innerHTML = "";
+        lista.innerHTML='';
 
     for(let i=0; i<amigos.length; i++){
         const li =document.createElement ('li');
-        li.textContent =amigos(i);
-        listaAmigos.appendChild(i);
+        li.textContent =amigos[i];
+        lista.appendChild(i);
     }
 }
 
 //funcion para sortear amigos
-function sorteoAmigo() {
+function sortearAmigo() {
     if(amigos.length === 0) {
         alert("No hay ningun amigo para sortear, agrega al menos uno");
         return
