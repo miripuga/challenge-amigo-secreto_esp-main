@@ -35,15 +35,25 @@ function agregarAmigo(){
 function actualizarLista() {
     const listaAmigos = document.getElementById('listaAmigos');
 //borrar el contenido
-    listaAmigos.innerHTML = "":
+    listaAmigos.innerHTML = "";
 
     for(let i=0; i<amigos.length; i++){
         const li =document.createElement ('li');
         li.textContent =amigos(i);
         listaAmigos.appendChild(i);
     }
-
-    
 }
 
 //funcion para sortear amigos
+function sorteoAmigo() {
+    if(amigos.length === 0) {
+        alert("No hay ningun amigo para sortear, agrega al menos uno");
+        return
+    }
+    const amigoAleatorio = Math.floor(Math.random() *amigos.length);
+
+    const amigoSeleccionado = amigos[amigoAleatorio];
+
+    const resultado = document.getElementById ('resultado');
+    resultado.innerHTML = `Amigo seleccionado: <strong>${amigoSeleccionado}</strong>`;
+}
