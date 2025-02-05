@@ -6,8 +6,8 @@ let amigos = [];
 //funcion para agregar amigos
 function agregarAmigo(){
     //capturar el valor del campo de entrada
-    const agregarAmigo = document.getElementById ('amigo');
-    const nombreAmigo = agregarAmigo.ariaValueMax.trim();
+    const agregarAmigo = document.getElementById ("amigo");
+    const nombreAmigo = agregarAmigo.ariaValueMax.trim ();
     
     //validar la entrada que no este vacio
     if(nombre === '') {
@@ -17,7 +17,7 @@ function agregarAmigo(){
 
     //validar que no este repetido
     if (amigos.includes (nombreAmigo)){
-        alert (`El nombre ${amigos} ya se encuentra en la lista`);
+        alert (`El nombre ${nombreAmigo} ya se encuentra en la lista`);
         return;
     }
 
@@ -29,10 +29,21 @@ function agregarAmigo(){
 
     //actualizar la lista en HTML
     actualizarLista();
-
 }
 
 //funcion para actualizar lista de amigos
+function actualizarLista() {
+    const listaAmigos = document.getElementById('listaAmigos');
+//borrar el contenido
+    listaAmigos.innerHTML = "":
 
+    for(let i=0; i<amigos.length; i++){
+        const li =document.createElement ('li');
+        li.textContent =amigos(i);
+        listaAmigos.appendChild(i);
+    }
+
+    
+}
 
 //funcion para sortear amigos
